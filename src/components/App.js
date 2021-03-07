@@ -1,4 +1,5 @@
 import React, { useState,useReducer } from "react";
+
 import "./../styles/App.css";
 
 
@@ -33,7 +34,11 @@ const states = [{
 			description:"Little less known city Ajaypur.",
 		}]
 	}]
-},{
+},
+
+
+{
+	
 	name : "Jharkhand",
 	description:"Jharkhand is a state in eastern India. It's known for its waterfalls, the elegant Jain temples of Parasnath Hill and the elephants and tigers of Betla National Park.",
 	city :[{
@@ -67,7 +72,10 @@ const states = [{
 			description:"Ideal for conduction major events",
 		}]
 	}]
-},{
+},
+
+
+{
 	name : "Assam",
 	description:"Assam is a state in northeastern India known for its wildlife, archeological sites and tea plantations. ",
 	city :[{
@@ -101,7 +109,10 @@ const states = [{
 			description:"Central Market for Tezpur",
 		}]
 	}]
-},{
+},
+
+
+{
 	name : "Bihar",
 	description:"Bihar is a state in East India, bordering Nepal. It is divided by the River Ganges, which floods its fertile plains. Important Buddhist pilgrimage sites include the Bodhi Tree in Bodhgaya's Mahabodhi Temple, under which the Buddha allegedly meditated.",
 	city :[{
@@ -124,7 +135,11 @@ const states = [{
 			name : "Barachatti",
 			description:"Barachatti is a block in the Gaya district of Bihar, India. Barachatti contains 141 villages and 13 gram panchayat. Sarwan bazar is the biggest and Nimi is the smallest village of Barachatti. The total population in Barachatti sub-district is 142,534 according to the census during 2011 by Indian Government.",
 		}]	
-	},{
+	},
+	
+	
+	
+	{
 		name : "Darbhanga",
 		description:"Darbhanga is a city and Municipal Corporation in the Indian state of Bihar. It is the 6th largest city of Bihar, only after Patna, Gaya, Bhagalpur, Muzaffarpur and Purnea. It is the headquarters of Darbhanga district and Darbhanga division and was the seat of the Raj Darbhanga and capital of the Mithila region.",
 		landmarks :[{
@@ -140,11 +155,96 @@ const states = [{
 
 function App() 
 {
-	// Do not alter/remove main div
+	
+
+
+
+	
+	
+	const[_state , set_state] = useState(0);
+	const[_city , setcity] = useState(0);
+	const[_landmark , setlandmark] = useState(0);
+
+
+
+
+	
+
+
+	
+	const handlestatechange =(e)=>{
+
+		   set_state(e.target.value);
+		
+		 //	console.log(_state);
+		
+	
+		
+
+	}
+	const handle_city_change = (e)=>{
+	
+			setcity(e.target.value)
+
+		//console.log(_state)
+
+	}
+	const handle_Landmark_change = (e)=>{
+	
+		setlandmark(e.target.value)
+		
+	}
+	
+
+
+
+
+
 	return (
 	<div id="main">
 		
+		<div className="city">      
+            <label>State:</label>
+			<select id="state" onChange={handlestatechange}>
+				 {states.map((e,i)=>{return <option key={i} value={i}>{e.name}</option>})}
+			</select>
+               <div className="description"> 
+            <div id="state-title" >{states[_state].name}</div>
+			<div id="state-description" >{states[_state].description}</div>
+			</div>            
+            </div>
+
+			
+			
+
+			<div className="city">      
+            <label>City:</label>
+			<select id="city"  onChange={ handle_city_change}>
+				 	{states[_state].city.map((e,i)=>{ return <option key={i} value={i}>{e.name}</option>})}
+			</select>
+                
+            <div className="description"> 
+                    <div id="city-title">{states[_state].city[_city].name}</div>
+                    <div id="city-description">{states[_state].city[_city].description}</div>
+            </div>
+            </div>
+
+
+		
+			<div className="city">      
+            <label>landmark:</label>
+			<select id="landmark"  onChange={handle_Landmark_change}>
+				 {states[_state].city[_city].landmarks.map((ev,i)=>{return <option key={i} value={i}>{ev.name}</option>})}
+			</select>
+                
+            <div className="description"> 
+                    <div id="landmark-title">{states[_state].city[_city].landmarks[_landmark].name}</div>
+                    <div id="landmark-description">{states[_state].city[_city].landmarks[_landmark].description}</div>
+            </div>
+            </div>
+		
 	</div>
+
 	);
 }
 

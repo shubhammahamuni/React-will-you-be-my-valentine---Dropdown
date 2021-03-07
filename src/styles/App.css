@@ -14,3 +14,20 @@ button{
 .bg-pink{
 	background-color:pink;
 }
+.description{
+    display: inline-block;
+    border: 1px solid black;
+    padding: 10px;
+    margin-left: 100px;
+    width: 300px;
+    text-align: left;
+    
+}
+
+.city , .landmark , .states{
+    border: 1px solid red;
+    width: 600px;
+  
+
+}
+
